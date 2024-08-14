@@ -7,6 +7,8 @@ export function employeesReducer(state = initialState, action) {
         return action.payload;
     case 'employees/employeeDeleted':
       return state.filter(emp => emp.id !== action.payload);
+    case 'employees/employeeAdded':
+      return [...state, action.payload];
       default:
         return state;
     }
@@ -18,6 +20,15 @@ import axios from "axios";
 const PATH = "http://localhost:5001/api";
 
 //Thunk 
+export const addEmployee = (employee) => async (dispatch) => {
+  try {
+    const response = await axios.post(`${PATH}/employees`, employee);
+    dispatch({ type: 'employees/employeeAdded', payload: response.data });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const deleteEmployee = (employeeId) => async (dispatch) => {
   try {
     await axios.delete(`${PATH}/employees/${employeeId}`);
