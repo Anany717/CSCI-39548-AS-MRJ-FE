@@ -24,6 +24,14 @@ import axios from "axios";
 const PATH = "http://localhost:5001/api/tasks";
 
 //Thunks
+export const fetchTaskById = (taskId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`${PATH}/${taskId}`);
+    dispatch({ type: 'tasks/taskLoaded', payload: response.data });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 /* GET ALL TASKS */
 export const fetchTasks = () => async (dispatch) => {
