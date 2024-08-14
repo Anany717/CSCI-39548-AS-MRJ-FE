@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditTaskForm from './EditTaskForm';
+import EditTaskForm from '../containers/EditTaskForm.jsx';
 
 function SingleTaskView({task}) {
     if (!task) {

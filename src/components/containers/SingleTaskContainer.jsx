@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTaskById } from '../tasksSlice';
-import SingleTaskView from './SingleTaskView';
+import { fetchTaskById } from '../../store/tasksSlice.js';
+import SingleTaskView from '../views/SingleTaskView.jsx';
 import { useParams } from 'react-router-dom';
 
 const SingleTaskContainer = () => {

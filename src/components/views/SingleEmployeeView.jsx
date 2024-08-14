@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditEmployeeForm from './EditEmployeeForm';
+import EditEmployeeForm from '../containers/EditEmployeeForm.jsx';
 
 const SingleEmployeeView = ({ employee, tasks }) => {
   if (!employee) return <div>Loading...</div>;

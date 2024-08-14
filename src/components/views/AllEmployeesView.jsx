@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteEmployee } from '../employeesSlice';
+import { deleteEmployee } from '../../store/employeesSlice.js';
 import { Link } from 'react-router-dom';
 
 const handleDelete = (id) => {

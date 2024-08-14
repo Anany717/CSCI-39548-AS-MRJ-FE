@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchEmployeeById } from '../employeesSlice';
-import SingleEmployeeView from './SingleEmployeeView';
+import { fetchEmployeeById } from '../../store/employeesSlice.js';
+import SingleEmployeeView from '../views/SingleEmployeeView.jsx';
 import { useParams } from 'react-router-dom';
 
 const SingleEmployeeContainer = () => {

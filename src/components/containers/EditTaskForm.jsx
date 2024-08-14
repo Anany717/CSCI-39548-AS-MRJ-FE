@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { editTask } from '../tasksSlice';
+import { editTask } from '../../store/tasksSlice.js';
 
 const EditTaskForm = ({ task }) => {
   const dispatch = useDispatch();

@@ -16,7 +16,7 @@ export function employeesReducer(state = initialState, action) {
       default:
         return state;
     }
-};
+}
 
 //API calls go here
 import axios from "axios";
