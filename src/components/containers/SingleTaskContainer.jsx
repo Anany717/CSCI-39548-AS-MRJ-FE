@@ -1,18 +1,21 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTaskById } from '../tasksSlice';
+import SingleTaskView from './SingleTaskView';
 import { useParams } from 'react-router-dom';
-import { useSelector } from "react-redux";
 
-import SingleTaskView from '../views/SingleTaskView';
+const SingleTaskContainer = () => {
+  const { taskId } = useParams();
+  const dispatch = useDispatch();
 
-function SingleTaskContainer() {
-  let { taskId } = useParams(); //get id from URL
-  taskId = parseInt(taskId); //convert to integer
+  const task = useSelector(state => state.tasks.find(tsk => tsk.id === +taskId));
+  const employee = useSelector(state => state.employees.find(emp => emp.id === task?.employeeId));
 
-  //get task from state based on URL parameter
-  const task = useSelector(state =>
-    state.tasks.find(task => task.id === taskId)
-  );
+  useEffect(() => {
+    dispatch(fetchTaskById(taskId));
+  }, [dispatch, taskId]);
 
-  return <SingleTaskView task={task}/>
-}
+  return <SingleTaskView task={task} employee={employee} />;
+};
 
 export default SingleTaskContainer;
