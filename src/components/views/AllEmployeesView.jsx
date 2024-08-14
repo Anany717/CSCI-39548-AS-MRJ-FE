@@ -1,4 +1,11 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteEmployee } from '../employeesSlice';
+import { Link } from 'react-router-dom';
+
+const handleDelete = (id) => {
+    dispatch(deleteEmployee(id));
+  };
 
 function AllEmployeesView({employees}) {
   if (!employees.length) {
@@ -14,6 +21,7 @@ function AllEmployeesView({employees}) {
         ))}
       </ul>
       <Link to={`/`}><button>Back to Home</button></Link>
+      <button onClick={() => handleDelete(employee.id)} style={{marginLeft: '10px', color: 'red'}}>X</button>
     </>
   );
 
