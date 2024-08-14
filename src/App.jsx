@@ -1,7 +1,7 @@
 import './App.css';
 import { Link } from "react-router-dom";
-import SingleEmployeeContainer from './SingleEmployeeContainer';
-import SingleTaskContainer from './SingleTaskContainer';
+import SingleEmployeeContainer from '././components/containers/SingleEmployeeContainer.jsx';
+import SingleTaskContainer from '././components/containers/SingleTaskContainer.jsx';
 
 function App() {
   return (
