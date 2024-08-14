@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EditTaskForm from './EditTaskForm';
 
 function SingleTaskView({task}) {
     if (!task) {
@@ -26,6 +27,7 @@ function SingleTaskView({task}) {
         )
             </p>
           </article>
+            <EditTaskForm task={task} />
         </section>
       );
 }
