@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EditEmployeeForm from './EditEmployeeForm';
 
 const SingleEmployeeView = ({ employee, tasks }) => {
   if (!employee) return <div>Loading...</div>;
@@ -20,6 +21,7 @@ const SingleEmployeeView = ({ employee, tasks }) => {
       ) : (
         <p>No tasks assigned to this employee.</p>
       )}
+      <EditEmployeeForm employee={employee} />
     </div>
   );
 };
