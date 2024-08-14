@@ -9,6 +9,10 @@ export function employeesReducer(state = initialState, action) {
       return state.filter(emp => emp.id !== action.payload);
     case 'employees/employeeAdded':
       return [...state, action.payload];
+    case 'employees/employeeUpdated':
+      return state.map(emp =>
+        emp.id === action.payload.id ? action.payload : emp
+      );
       default:
         return state;
     }
@@ -20,6 +24,15 @@ import axios from "axios";
 const PATH = "http://localhost:5001/api";
 
 //Thunk 
+export const editEmployee = (employee) => async (dispatch) => {
+  try {
+    const response = await axios.put(`${PATH}/employees/${employee.id}`, employee);
+    dispatch({ type: 'employees/employeeUpdated', payload: response.data });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const addEmployee = (employee) => async (dispatch) => {
   try {
     const response = await axios.post(`${PATH}/employees`, employee);
