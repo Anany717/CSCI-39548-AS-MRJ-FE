@@ -18,14 +18,7 @@ function SingleTaskView({task}) {
           <article>
             <h2>{task.content}</h2>
             <p>Priority: {priorities[task.priority-1]}</p>
-              <p>Status: {task.completed ? 'Completed' : 'Not Completed'}</p>
-      <p>
-        Assigned to: {employee ? (
-          <Link to={`/employees/${employee.id}`}>{employee.firstname} {employee.lastname}</Link>
-        ) : (
-          "Unassigned"
-        )
-            </p>
+            <p>Status: {task.completed ? 'Completed' : 'Not Completed'}</p>
           </article>
             <EditTaskForm task={task} />
         </section>
