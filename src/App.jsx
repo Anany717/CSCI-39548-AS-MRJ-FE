@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from './HomePage'; // Assuming you have a home page component
 import AllEmployeesContainer from './components/containers/AllEmployeesContainer';
 import AllTasksContainer from './components/containers/AllTasksContainer';
 import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer';
