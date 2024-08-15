@@ -5,8 +5,10 @@ import AllTasksContainer from './components/containers/AllTasksContainer';
 import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer';
 import SingleTaskContainer from './components/containers/SingleTaskContainer';
 import NewEmployeeForm from './components/containers/NewEmployeeForm';
-import NewTaskForm from './components/containers/NewTaskForm';
-import EditEmployeeForm from './components/containers/EditEmployeeForm';
+import NewTaskContainer from './components/containers/NewTaskContainer';
+import EditEmployeeForm from './components/containers/EditTaskForm';
+import EditTaskForm from './components/containers/EditEmployeeForm';
+
 
 function App() {
   return (
@@ -16,8 +18,9 @@ function App() {
         <Route exact path="/employees" component={AllEmployeesContainer} />
         <Route exact path="/tasks" component={AllTasksContainer} />
         <Route exact path="/employees/new" component={NewEmployeeForm} />
-        <Route exact path="/tasks/new" component={NewTaskForm} />
-        <Route exact path="/employees/:employeeId/edit" component={EditEmployeeForm} /> {/* Edit Employee Route */}
+        <Route exact path="/tasks/new" component={NewTaskContainer} />
+        <Route exact path="/employees/:employeeId/edit" component={EditEmployeeForm} /> 
+        <Route exact path="/tasks/:taskId/edit" component={EditTaskForm} />
         <Route path="/employees/:employeeId" component={SingleEmployeeContainer} />
         <Route path="/tasks/:taskId" component={SingleTaskContainer} />
       </Switch>
