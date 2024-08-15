@@ -1,17 +1,28 @@
 import './App.css';
-import { Link } from "react-router-dom";
-import SingleEmployeeContainer from '././components/containers/SingleEmployeeContainer.jsx';
-import SingleTaskContainer from '././components/containers/SingleTaskContainer.jsx';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePage from './HomePage'; // Assuming you have a home page component
+import AllEmployeesContainer from './components/containers/AllEmployeesContainer';
+import AllTasksContainer from './components/containers/AllTasksContainer';
+import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer';
+import SingleTaskContainer from './components/containers/SingleTaskContainer';
+import NewEmployeeForm from './components/containers/NewEmployeeForm';
+import NewTaskForm from './components/containers/NewTaskForm';
+import EditEmployeeForm from './components/containers/EditEmployeeForm';
 
 function App() {
   return (
-    <>
-      <h1>WELCOME</h1>
-      <Link to={`employees`}><button>All Employees</button></Link>
-      <Link to={`tasks`}><button>All Tasks</button></Link>
-      <Route path="/employees/:employeeId" element={<SingleEmployeeContainer />} />
-      <Route path="/tasks/:taskId" element={<SingleTaskContainer />} />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/employees" component={AllEmployeesContainer} />
+        <Route exact path="/tasks" component={AllTasksContainer} />
+        <Route exact path="/employees/new" component={NewEmployeeForm} />
+        <Route exact path="/tasks/new" component={NewTaskForm} />
+        <Route exact path="/employees/:employeeId/edit" component={EditEmployeeForm} /> {/* Edit Employee Route */}
+        <Route path="/employees/:employeeId" component={SingleEmployeeContainer} />
+        <Route path="/tasks/:taskId" component={SingleTaskContainer} />
+      </Switch>
+    </Router>
   );
 }
 
