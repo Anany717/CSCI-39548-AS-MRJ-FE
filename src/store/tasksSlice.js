@@ -24,24 +24,6 @@ import axios from "axios";
 const PATH = "http://localhost:5001/api/tasks";
 
 //Thunks
-export const editTask = (task) => async (dispatch) => {
-  try {
-    const response = await axios.put(`${PATH}/${task.id}`, task);
-    dispatch({ type: 'tasks/taskUpdated', payload: response.data });
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const fetchTaskById = (taskId) => async (dispatch) => {
-  try {
-    const response = await axios.get(`${PATH}/${taskId}`);
-    dispatch({ type: 'tasks/taskLoaded', payload: response.data });
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 /* GET ALL TASKS */
 export const fetchTasks = () => async (dispatch) => {
   try {
