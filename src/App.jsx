@@ -2,6 +2,12 @@ import './App.css';
 import {Switch, Route, Link } from "react-router-dom";
 import AllEmployeesContainer from './components/containers/AllEmployeesContainer';
 import AllTasksContainer from './components/containers/AllTasksContainer';
+import SingleEmployeeContainer from './components/containers/SingleEmployeeContainer';
+import SingleTaskContainer from './components/containers/SingleTaskContainer';
+import NewEmployeeForm from './components/containers/NewEmployeeForm';
+import NewTaskContainer from './components/containers/NewTaskContainer';
+import EditEmployeeForm from './components/containers/EditEmployeeForm';
+import EditTaskForm from './components/containers/EditTaskForm';
 
 function App() {
   return (
