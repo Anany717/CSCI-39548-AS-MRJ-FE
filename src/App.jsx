@@ -6,8 +6,8 @@ import SingleEmployeeContainer from './components/containers/SingleEmployeeConta
 import SingleTaskContainer from './components/containers/SingleTaskContainer';
 import NewEmployeeForm from './components/containers/NewEmployeeForm';
 import NewTaskContainer from './components/containers/NewTaskContainer';
-import EditEmployeeForm from './components/containers/EditTaskForm';
-import EditTaskForm from './components/containers/EditEmployeeForm';
+import EditEmployeeForm from './components/containers/EditEmployeeForm';
+import EditTaskForm from './components/containers/EditTaskForm';
 
 
 function App() {
