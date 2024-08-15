@@ -12,8 +12,7 @@ import EditTaskForm from './components/containers/EditTaskForm';
 
 function App() {
   return (
-    <Router>
-      <Switch>
+    <>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/employees" component={AllEmployeesContainer} />
         <Route exact path="/tasks" component={AllTasksContainer} />
@@ -23,8 +22,7 @@ function App() {
         <Route exact path="/tasks/:taskId/edit" component={EditTaskForm} />
         <Route path="/employees/:employeeId" component={SingleEmployeeContainer} />
         <Route path="/tasks/:taskId" component={SingleTaskContainer} />
-      </Switch>
-    </Router>
+    </>
   );
 }
 
