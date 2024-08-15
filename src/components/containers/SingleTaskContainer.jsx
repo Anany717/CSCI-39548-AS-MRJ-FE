@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTaskById } from '../../store/tasksSlice.js';
+import { fetchTasks } from '../../store/tasksSlice.js';
 import SingleTaskView from '../views/SingleTaskView.jsx';
 import { useParams } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const SingleTaskContainer = () => {
   const employee = useSelector(state => state.employees.find(emp => emp.id === task?.employeeId));
 
   useEffect(() => {
-    dispatch(fetchTaskById(taskId));
+    dispatch(fetchTasks(taskId));
   }, [dispatch, taskId]);
 
   return <SingleTaskView task={task} employee={employee} />;
