@@ -21,7 +21,7 @@ export function employeesReducer(state = initialState, action) {
 //API calls go here
 import axios from "axios";
 //PATH (should be where your server is running)
-const PATH = "http://localhost:5001/api";
+const PATH = "http://localhost:3000/api";
 
 //Thunk 
 export const editEmployee = (employee) => async (dispatch) => {
@@ -68,5 +68,4 @@ export const fetchEmployeeById = (employeeId) => async (dispatch) => {
     console.error(err);
   }
 };
-
 
