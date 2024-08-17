@@ -1,29 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import EditEmployeeForm from '../containers/EditEmployeeForm.jsx';
+import EditEmployeeForm from '../containers/EditEmployeeForm';
 
-const SingleEmployeeView = ({ employee, tasks }) => {
-  if (!employee) return <div>Loading...</div>;
-
+function SingleEmployeeView({ employee }) {
   return (
     <div>
       <h2>{employee.firstname} {employee.lastname}</h2>
       <p>Department: {employee.department}</p>
+      
       <h3>Assigned Tasks:</h3>
-      {tasks.length > 0 ? (
+      {employee.Tasks && employee.Tasks.length > 0 ? (
         <ul>
-          {tasks.map(task => (
-            <li key={task.id}>
-              <Link to={`/tasks/${task.id}`}>{task.content}</Link>
-            </li>
+          {employee.Tasks.map(task => (
+            <li key={task.id}>{task.content} (Priority: {task.priority})</li>
           ))}
         </ul>
       ) : (
         <p>No tasks assigned to this employee.</p>
       )}
+
+      {/* Include the existing EditEmployeeForm component */}
       <EditEmployeeForm employee={employee} />
     </div>
   );
-};
+}
 
 export default SingleEmployeeView;
