@@ -1,70 +1,58 @@
-//REDUCER
-const initialState = [];
-
-export function tasksReducer(state = initialState, action) {
-    switch (action.type) {
-      case 'tasks/tasksLoaded':
-        return action.payload;
-      case 'tasks/taskDeleted':
-        return state.filter(task => task.id!==action.payload);
-      case 'tasks/taskCreated':
-        return [...state, action.payload];
-      case 'tasks/taskUpdated':
-        return state.map(task => 
-          task.id===action.payload.id ? action.payload : task
-        );
-      default:
-        return state;
-    }
-};
-
-//API calls go here
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-//PATH (should be where your server is running)
+
+// API base path
 const PATH = "http://localhost:5001/api/tasks";
 
-//Thunks
+// Async thunk to fetch tasks
+export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
+  const response = await axios.get(PATH);
+  return response.data;
+});
 
-/* GET ALL TASKS */
-export const fetchTasks = () => async (dispatch) => {
-  try {
-    let res = await axios.get(`${PATH}`);
-    dispatch({type: 'tasks/tasksLoaded', payload: res.data});
-  } catch(err) {
-    console.error(err);
-  }
-};
+// Async thunk to add a task
+export const addTask = createAsyncThunk("tasks/addTask", async (task) => {
+  const response = await axios.post(PATH, task);
+  return response.data;
+});
 
-/* DELETE TASK */
-export const deleteTask = taskId => async dispatch => {
-  try {
+// Async thunk to update a task
+export const editTask = createAsyncThunk("tasks/editTask", async (task) => {
+  const response = await axios.put(`${PATH}/${task.id}`, task);
+  return response.data;
+});
+
+// Async thunk to delete a task
+export const deleteTask = createAsyncThunk(
+  "tasks/deleteTask",
+  async (taskId) => {
     await axios.delete(`${PATH}/${taskId}`);
-    //delete succesful so change state with dispatch
-    dispatch({type: 'tasks/taskDeleted', payload: taskId});
-  } catch(err) {
-    console.error(err);
+    return taskId;
   }
-};
+);
 
-/* ADD TASK */
-export const addTask = task => async (dispatch) => {
-  try {
-    let res = await axios.post(`${PATH}`, task);
-    dispatch({type: 'tasks/taskCreated', payload: res.data});
-    return res.data;
-  } catch(err) {
-    console.error(err);
-  }
-};
+const tasksSlice = createSlice({
+  name: "tasks",
+  initialState: [],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTasks.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(addTask.fulfilled, (state, action) => {
+        state.push(action.payload);
+      })
+      .addCase(editTask.fulfilled, (state, action) => {
+        const index = state.findIndex((task) => task.id === action.payload.id);
+        if (index !== -1) {
+          state[index] = action.payload;
+        }
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        return state.filter((task) => task.id !== action.payload);
+      });
+  },
+});
 
-/* EDIT TASK */
-export const editTask = task => async dispatch => {
-  try {
-    let res = await axios.put(`${PATH}/${task.id}`, task);
-    //res.data is the updated course
-    dispatch({type: 'tasks/taskUpdated', payload: res.data});
-  } catch(err) {
-    console.error(err);
-  }
-};
-
+export default tasksSlice.reducer;

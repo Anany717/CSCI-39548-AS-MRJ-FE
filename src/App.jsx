@@ -1,12 +1,32 @@
-import './App.css';
-import { Link } from "react-router-dom";
+import "./App.css";
+import "./components/wrappers/wrappers.css";
+import "react-web-vector-icons/fonts";
+import { Outlet } from "react-router-dom";
+
+import { useEffect } from "react";
+import { fetchEmployees } from "./store/employeesSlice";
+import { fetchTasks } from "./store/tasksSlice";
+import { useDispatch } from "react-redux";
+import Navbar from "./components/Navbar";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const fetchAllData = async () => {
+    await dispatch(fetchEmployees());
+    await dispatch(fetchTasks());
+  };
+
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
   return (
     <>
-      <h1>WELCOME</h1>
-      <Link to={`employees`}><button>All Employees</button></Link>
-      <Link to={`tasks`}><button>All Tasks</button></Link>
+      <Navbar />
+      <div className="app">
+        <Outlet />
+      </div>
     </>
   );
 }

@@ -1,37 +1,70 @@
 import { Link } from "react-router-dom";
 
-function SingleTaskView({ task, employees, handleSubmit}) {
-    if (!task) {
-        return (
-          <section>
-            <h2>Task not found!</h2>
-          </section>
-        );
-      }
+function SingleTaskView({ task, employees, handleSubmit }) {
+  let priorities = ["Low", "Medium", "High"];
 
-      let priorities = ["Low", "Medium", "High"];
-      let employeeAssigned = task.employee ? 
-        <Link to={`../employees`}>{task.employee.firstname + " " + task.employee.lastname}</Link>
-        : "None";
+  let employeeAssigned = task.employee ? (
+    // <Link to={`../employees/${task.employee.id}`}>
+    //   {task.employee.firstname + " " + task.employee.lastname}
+    // </Link>
+    <span>{task.employee.firstname + " " + task.employee.lastname}</span>
+  ) : (
+    "None"
+  );
 
-      
-    
-      return (
-        <div>
-        <Link to="../tasks">Back to all tasks</Link>
-        <section>
-          <article>
-            <h2>{task.content}</h2>
-            <p>Priority: {priorities[task.priority-1]}</p>
-            <p>Assigned to: {employeeAssigned}</p>
-          </article>
-        </section>
-        <hr/>
-        <Link to={`edit/`}><h3>Edit task information</h3></Link>
-      
+  return (
+    <>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h1 style={{ marginRight: "20px" }}>Task Details</h1>
+          <Link to="/tasks">
+            <button style={{ marginRight: "1em" }}>Back</button>
+          </Link>
+          <Link to={"edit/"}>
+            <button>Edit</button>
+          </Link>
         </div>
-
-      );
+        <div className="form-details-container">
+          <strong className="form-details-label">Title:</strong>
+          {task.content}
+        </div>
+        <div className="form-details-container">
+          <strong className="form-details-label">Priority:</strong>
+          {priorities[task.priority - 1]}
+        </div>
+        <div className="form-details-container">
+          <strong className="form-details-label">Assigned To:</strong>
+          {employeeAssigned}
+        </div>
+        <div className="form-details-container">
+          <strong className="form-details-label">Status:</strong>
+          {task.completed ? (
+            <span
+              style={{
+                color: "green",
+              }}
+            >
+              COMPLETED
+            </span>
+          ) : (
+            <span
+              style={{
+                color: "red",
+              }}
+            >
+              IN PROGRESS
+            </span>
+          )}
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default SingleTaskView;

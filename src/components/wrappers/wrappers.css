@@ -1,0 +1,25 @@
+.content-wrapper{
+    max-height: 50vh;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+@media (max-width: 1200px) {
+    .content-wrapper {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .content-wrapper {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .content-wrapper {
+        width: 95vw;
+    }
+}
